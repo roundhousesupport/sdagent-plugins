@@ -60,6 +60,8 @@
 # * Move Passenger.py into that directory 
 # * Restart the agent (service sd-agent restart)
 
+# echo "sd-agent  ALL = NOPASSWD: /usr/local/bin/passenger-memory-stats, /usr/local/bin/passenger-status" | tee -a /etc/sudoers
+
 import re
 import commands
 
@@ -70,8 +72,8 @@ import commands
 #
 # Removes colour codes from the output using:
 # sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g"
-PASSENGER_MEMORY_STATS_CMD = 'passenger-memory-stats | sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g"'
-PASSENGER_STATUS_CMD = 'passenger-status | sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g"'
+PASSENGER_MEMORY_STATS_CMD = 'sudo passenger-memory-stats | sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g"'
+PASSENGER_STATUS_CMD = 'sudo passenger-status | sed -r "s/\x1B\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g"'
 
 
 class Passenger:
